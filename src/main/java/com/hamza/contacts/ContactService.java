@@ -6,7 +6,7 @@ public class ContactService {
 
     public int index = 0;
     private Contact[] contacts = new Contact[10];
-
+    Scanner scanner = new Scanner(System.in);
     public void askOperation() {
 
         System.out.println("Please select an option");
@@ -15,7 +15,6 @@ public class ContactService {
         System.out.println("3-) Search");
         System.out.println("4-) Edit");
         System.out.println("5-) Exit");
-        Scanner scanner = new Scanner(System.in);
         Integer selectedOption = scanner.nextInt();
         switch (selectedOption) {
             case 1:
@@ -46,7 +45,7 @@ public class ContactService {
         }
     }
 
-    public Contact createOrUpdateContact(Scanner scanner) {
+    public Contact createOrUpdateContact() {
         System.out.println("Enter First Name");
         String firstName = scanner.next();
         System.out.println("Enter Last Name");
@@ -79,18 +78,13 @@ public class ContactService {
     }
 
     public void addContact() {
-        Scanner scanner = new Scanner(System.in);
-
-        Contact contact = createOrUpdateContact(scanner);
-
+        Contact contact = createOrUpdateContact();
         contacts[index] = contact;
         index++;
-
     }
 
 
     public void searchContact() {
-
         Scanner input = new Scanner(System.in);
         System.out.println("Search Contact");
         String search = input.next();
@@ -109,15 +103,13 @@ public class ContactService {
             System.out.println(count + " contacts found.");
         }
 
-
     }
 
 
     public void editContact() {
         System.out.println("Enter Id of Contact to Edit: ");
-        Scanner scanner = new Scanner(System.in);
         Integer id = scanner.nextInt();
-        Contact contact = createOrUpdateContact(scanner);
+        Contact contact = createOrUpdateContact();
         contacts[id] = contact;
     }
 }

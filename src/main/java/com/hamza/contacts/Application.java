@@ -5,6 +5,4 @@ public class Application {
         ContactService contactService=new ContactService();
         contactService.askOperation();
     }
-
-
 }
