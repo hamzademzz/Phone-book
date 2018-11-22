@@ -4,13 +4,13 @@ import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
-        ask();
+        askOperation();
     }
 
     public static Contact[] contacts = new Contact[10];
     public static int index = 0;
 
-    public static void ask() {
+    public static void askOperation() {
 
         System.out.println("Please select an option");
         System.out.println("1-) List");
@@ -30,13 +30,16 @@ public class Application {
             case 3:
                 searchContact();
                 break;
+            case 4:
+                editContact();
+                break;
             case 5:
                 System.exit(0);
                 break;
             default:
                 System.out.println("Not available option!");
         }
-        ask();
+        askOperation();
     }
 
     public static void list() {
@@ -46,24 +49,23 @@ public class Application {
         }
     }
 
-    public static void addContact() {
-        Scanner input = new Scanner(System.in);
+    public static Contact createOrUpdateContact(Scanner scanner) {
         System.out.println("Enter First Name");
-        String firstName = input.next();
+        String firstName = scanner.next();
         System.out.println("Enter Last Name");
-        String lastName = input.next();
+        String lastName = scanner.next();
         System.out.println("Enter Company");
-        String company = input.next();
+        String company = scanner.next();
         System.out.println("Enter Phone Number");
-        String phoneNumber = input.next();
+        String phoneNumber = scanner.next();
         System.out.println("Enter Email");
-        String email = input.next();
+        String email = scanner.next();
         System.out.println("Enter URL ");
-        String url = input.next();
+        String url = scanner.next();
         System.out.println("Enter Address");
-        String address = input.next();
+        String address = scanner.next();
         System.out.println("Enter birthday");
-        String birthday = input.next();
+        String birthday = scanner.next();
 
         Contact contact = new Contact();
         contact.setId(index);
@@ -76,6 +78,14 @@ public class Application {
         contact.setAddress(address);
         contact.setBirthday(birthday);
 
+        return contact;
+    }
+
+    public static void addContact() {
+        Scanner scanner = new Scanner(System.in);
+
+        Contact contact = createOrUpdateContact(scanner);
+
         contacts[index] = contact;
         index++;
 
@@ -87,26 +97,32 @@ public class Application {
         Scanner input = new Scanner(System.in);
         System.out.println("Search Contact");
         String search = input.next();
-        int count=0;
+        int count = 0;
         for (int i = 0; i < contacts.length; i++) {
             Contact contact = contacts[i];
-            if (contact!=null && search.equals(contact.getFirstName())) {
+            if (contact != null && search.equals(contact.getFirstName())) {
                 System.out.println(contact.toString());
                 count++;
             }
         }
 
-        if (count==0) {
+        if (count == 0) {
             System.out.println("Match Not Found");
-        }else{
-            System.out.println(count+" contacts found.");
+        } else {
+            System.out.println(count + " contacts found.");
         }
 
 
     }
 
 
-
+    public static void editContact() {
+        System.out.println("Enter Id of Contact to Edit: ");
+        Scanner scanner = new Scanner(System.in);
+        Integer id = scanner.nextInt();
+        Contact contact = createOrUpdateContact(scanner);
+        contacts[id] = contact;
+    }
 
 
 }
