@@ -14,6 +14,7 @@ public class Application{
     }
 
     public static Contact[] contacts=new Contact[];
+    public static  int index=0;
 
     public static void ask(){
         System.out.println("Please select an option");
@@ -63,7 +64,9 @@ public class Application{
         contact.setUrl(url);
         contact.setAddress(address);
         contact.setBirthday(birthday);
-        contacts[0]=contact;
+
+        contacts[index]=contact;
+        index++;
 
     }
 
