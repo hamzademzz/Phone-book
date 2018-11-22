@@ -1,14 +1,23 @@
 package com.hamza.contacts;
 
 public class Contact {
-   private String firstName;
-   private String lastName;
-   private String company;
-   private String phoneNumber;
-   private String email;
-   private String url;
-   private String address;
-   private String birthday;
+    private int id;
+    private String firstName;
+    private String lastName;
+    private String company;
+    private String phoneNumber;
+    private String email;
+    private String url;
+    private String address;
+    private String birthday;
+
+   public  int getId(){
+       return id;
+   }
+
+   public void setId(int id){
+       this.id=id;
+   }
 
     public String getFirstName() {
         return firstName;
@@ -72,5 +81,10 @@ public class Contact {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    @Override
+    public String toString(){
+       return getId() + getFirstName() + getLastName() + getCompany() + getPhoneNumber() +getEmail() + getUrl()+ getEmail()+ getAddress() +getBirthday();
     }
 }
