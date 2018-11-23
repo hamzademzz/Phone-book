@@ -8,6 +8,7 @@ public class ContactService {
     private Contact[] contacts = new Contact[10];
     int n=10;
     private Contact[] updatedContacts=new Contact[n-1];
+    private Contact contact = new Contact();
 
 
     Scanner scanner = new Scanner(System.in);
@@ -54,6 +55,43 @@ public class ContactService {
         }
     }
 
+    public void addFurtherInformation() {
+        System.out.println("Select if you want add any of the following : ");
+        System.out.println("1-) Email");
+        System.out.println("2-) URL");
+        System.out.println("3-) Address");
+        System.out.println("4-) Birthday");
+        System.out.println("5-) Exit");
+
+        Integer selectedOption = scanner.nextInt();
+        switch (selectedOption){
+            case 1:
+                System.out.println("Enter Email");
+                String email = scanner.next();
+                contact.setEmail(email);
+                break;
+            case 2:
+                System.out.println("Enter URL ");
+                String url = scanner.next();
+                contact.setUrl(url);
+                break;
+            case 3:
+                System.out.println("Enter Address");
+                String address = scanner.next();
+                contact.setAddress(address);
+                break;
+            case 4:
+                System.out.println("Enter birthday");
+                String birthday = scanner.next();
+                contact.setBirthday(birthday);
+                break;
+            case 5:
+                System.exit(0);
+                break;
+        }
+
+    }
+
     public Contact createOrUpdateContact() {
         System.out.println("Enter First Name");
         String firstName = scanner.next();
@@ -63,27 +101,19 @@ public class ContactService {
         String company = scanner.next();
         System.out.println("Enter Phone Number");
         String phoneNumber = scanner.next();
-        System.out.println("Enter Email");
-        String email = scanner.next();
-        System.out.println("Enter URL ");
-        String url = scanner.next();
-        System.out.println("Enter Address");
-        String address = scanner.next();
-        System.out.println("Enter birthday");
-        String birthday = scanner.next();
 
-        Contact contact = new Contact();
         contact.setId(index);
         contact.setFirstName(firstName);
         contact.setLastName(lastName);
         contact.setCompany(company);
         contact.setPhoneNumber(phoneNumber);
-        contact.setEmail(email);
-        contact.setUrl(url);
-        contact.setAddress(address);
-        contact.setBirthday(birthday);
 
-        return contact;
+        for (int i=0; i<5; i++){
+            addFurtherInformation();
+        }
+
+
+        return contact ;
     }
 
     public void addContact() {
