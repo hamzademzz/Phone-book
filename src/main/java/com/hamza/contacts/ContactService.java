@@ -6,6 +6,10 @@ public class ContactService {
 
     public int index = 0;
     private Contact[] contacts = new Contact[10];
+    int n=10;
+    private Contact[] updatedContacts=new Contact[n-1];
+
+
     Scanner scanner = new Scanner(System.in);
     public void askOperation() {
 
@@ -14,7 +18,9 @@ public class ContactService {
         System.out.println("2-) New Contact");
         System.out.println("3-) Search");
         System.out.println("4-) Edit");
-        System.out.println("5-) Exit");
+        System.out.println("5-) Delete Contact");
+        System.out.println("6-) Exit");
+
         Integer selectedOption = scanner.nextInt();
         switch (selectedOption) {
             case 1:
@@ -30,6 +36,9 @@ public class ContactService {
                 editContact();
                 break;
             case 5:
+                deleteContact();
+                break;
+            case 6:
                 System.exit(0);
                 break;
             default:
@@ -112,4 +121,31 @@ public class ContactService {
         Contact contact = createOrUpdateContact();
         contacts[id] = contact;
     }
+
+
+    public void deleteContact(){
+        System.out.println("Enter the Contact to delete");
+        Integer id = scanner.nextInt();
+
+        int count=0;
+        for (int i=0; i<contacts.length; i++){
+            if (!contacts[i].equals(id) ){
+                count++;
+                updatedContacts[count-1]=contacts[i];
+            }
+        }
+
+        for (int i=0; i<count; i++){
+            System.out.println(updatedContacts[i]);
+        }
+
+
+
+
+
+
+
+
+    }
+
 }
