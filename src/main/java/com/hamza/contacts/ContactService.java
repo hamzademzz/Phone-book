@@ -9,6 +9,7 @@ public class ContactService {
     int n=10;
     private Contact[] updatedContacts=new Contact[n-1];
     private Contact contact = new Contact();
+    private int count=0;
 
 
     Scanner scanner = new Scanner(System.in);
@@ -111,8 +112,6 @@ public class ContactService {
         for (int i=0; i<5; i++){
             addFurtherInformation();
         }
-
-
         return contact ;
     }
 
@@ -122,17 +121,32 @@ public class ContactService {
         index++;
     }
 
+    public void ifEquals(){
+        System.out.println(contact.toString());
+        count++;
+
+    }
+
+
+
 
     public void searchContact() {
-        Scanner input = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Search Contact");
-        String search = input.next();
-        int count = 0;
+        String search = scanner.next();
         for (int i = 0; i < contacts.length; i++) {
             Contact contact = contacts[i];
-            if (contact != null && search.equals(contact.getFirstName())) {
-                System.out.println(contact.toString());
-                count++;
+            if (contact != null && search.equals(contact.getFirstName())  ) {
+                ifEquals();
+            }
+            else if(contact != null && search.equals(contact.getLastName())){
+                ifEquals();
+            }
+            else if(contact != null && search.equals(contact.getCompany())){
+                ifEquals();
+            }
+            else if(contact != null && search.equals(contact.getPhoneNumber())){
+                ifEquals();
             }
         }
 
